@@ -16,25 +16,23 @@
 package org.mybatis.spring.nativex.sample.dao;
 
 import java.util.Collection;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CityDao {
 
-  private final SqlSession sqlSession;
+    private final SqlSession sqlSession;
 
-  public CityDao(SqlSession sqlSession) {
-    this.sqlSession = sqlSession;
-  }
+    public CityDao(SqlSession sqlSession) {
+        this.sqlSession = sqlSession;
+    }
 
-  public void insert(City city) {
-    sqlSession.insert("org.mybatis.spring.nativex.sample.dao.CityDao.insert", city);
-  }
+    public void insert(City city) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public Collection<City> findAll() {
-    return sqlSession.selectList("org.mybatis.spring.nativex.sample.dao.CityDao.findAll");
-  }
-
+    public Collection<City> findAll() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

@@ -35,31 +35,19 @@ import org.springframework.jdbc.support.KeyHolder;
 @SpringBootApplication
 public class MybatisSpringNativeSampleApplication {
 
-  private static final Logger log = LoggerFactory.getLogger("ApLog");
+    private static final Logger log = LoggerFactory.getLogger("ApLog");
 
-  public static void main(String[] args) {
-    SpringApplication.run(MybatisSpringNativeSampleApplication.class, args);
-  }
+    public static void main(String[] args) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  ApplicationRunner runner(NamedParameterJdbcOperations operations, SqlGenerator sqlGenerator) {
-    return args -> {
-      City newCity = new City(null, "NYC", "NY", "USA");
-      KeyHolder keyHolder = new GeneratedKeyHolder();
-      operations.update(sqlGenerator.generate("sqls/city/city-insert.sql", newCity),
-          new BeanPropertySqlParameterSource(newCity), keyHolder);
-      newCity.setId(keyHolder.getKeyAs(Integer.class));
-      log.info("New city: {}", newCity);
-      operations
-          .query(sqlGenerator.generate("sqls/city/city-findAll.sql", null), new BeanPropertyRowMapper<>(City.class))
-          .forEach(x -> log.info("{}", x));
-    };
-  }
+    @Bean
+    ApplicationRunner runner(NamedParameterJdbcOperations operations, SqlGenerator sqlGenerator) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  SqlGenerator sqlGenerator() {
-    return new SqlGenerator(SqlGeneratorConfig.newInstanceWithCustomizer(
-        c -> c.getDialect().setBindVariableRender(BindVariableRender.BuiltIn.SPRING_NAMED_PARAMETER.getType())));
-  }
-
+    @Bean
+    SqlGenerator sqlGenerator() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

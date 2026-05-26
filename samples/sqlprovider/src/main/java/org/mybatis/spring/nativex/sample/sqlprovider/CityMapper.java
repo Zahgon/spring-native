@@ -16,7 +16,6 @@
 package org.mybatis.spring.nativex.sample.sqlprovider;
 
 import java.util.Collection;
-
 import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
@@ -25,33 +24,34 @@ import org.apache.ibatis.annotations.SelectProvider;
 @Mapper
 public interface CityMapper {
 
-  @InsertProvider(InsertSqlProvider.class)
-  @Options(useGeneratedKeys = true, keyProperty = "id")
-  void insert(City city);
+    @InsertProvider(InsertSqlProvider.class)
+    @Options(useGeneratedKeys = true, keyProperty = "id")
+    void insert(City city);
 
-  @SelectProvider(type = SelectSqlProvider.class, method = "provideSqlForFindAll")
-  Collection<City> findAll();
+    @SelectProvider(type = SelectSqlProvider.class, method = "provideSqlForFindAll")
+    Collection<City> findAll();
 
-  class InsertSqlProvider {
-    private InsertSqlProvider() {
-      // NOP
+    class InsertSqlProvider {
+
+        private InsertSqlProvider() {
+            // NOP
+        }
+
+        @SuppressWarnings({ "java:S3400", "unused" })
+        public static String provideSql() {
+            throw new UnsupportedOperationException("STUB: not implemented");
+        }
     }
 
-    @SuppressWarnings({ "java:S3400", "unused" })
-    public static String provideSql() {
-      return "INSERT INTO city (name, state, country) VALUES(#{name}, #{state}, #{country})";
-    }
-  }
+    class SelectSqlProvider {
 
-  class SelectSqlProvider {
-    private SelectSqlProvider() {
-      // NOP
-    }
+        private SelectSqlProvider() {
+            // NOP
+        }
 
-    @SuppressWarnings({ "java:S3400", "unused" })
-    public static String provideSqlForFindAll() {
-      return "SELECT id, name, state, country FROM city ORDER BY id";
+        @SuppressWarnings({ "java:S3400", "unused" })
+        public static String provideSqlForFindAll() {
+            throw new UnsupportedOperationException("STUB: not implemented");
+        }
     }
-  }
-
 }

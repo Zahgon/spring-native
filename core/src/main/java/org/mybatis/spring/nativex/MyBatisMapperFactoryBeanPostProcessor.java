@@ -34,45 +34,41 @@ import org.springframework.util.ClassUtils;
  */
 class MyBatisMapperFactoryBeanPostProcessor implements BeanDefinitionPostProcessor, BeanFactoryAware {
 
-  private static final Log LOG = LogFactory.getLog(MyBatisMapperFactoryBeanPostProcessor.class);
+    private static final Log LOG = LogFactory.getLog(MyBatisMapperFactoryBeanPostProcessor.class);
 
-  private static final String MAPPER_FACTORY_BEAN = "org.mybatis.spring.mapper.MapperFactoryBean";
+    private static final String MAPPER_FACTORY_BEAN = "org.mybatis.spring.mapper.MapperFactoryBean";
 
-  private ConfigurableBeanFactory beanFactory;
+    private ConfigurableBeanFactory beanFactory;
 
-  @Override
-  public void setBeanFactory(BeanFactory beanFactory) {
-    this.beanFactory = (ConfigurableBeanFactory) beanFactory;
-  }
-
-  @Override
-  public void postProcessBeanDefinition(String beanName, RootBeanDefinition beanDefinition) {
-    if (ClassUtils.isPresent(MAPPER_FACTORY_BEAN, this.beanFactory.getBeanClassLoader())) {
-      resolveMapperFactoryBeanTypeIfNecessary(beanDefinition);
+    @Override
+    public void setBeanFactory(BeanFactory beanFactory) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-  }
 
-  private void resolveMapperFactoryBeanTypeIfNecessary(RootBeanDefinition beanDefinition) {
-    if (!beanDefinition.hasBeanClass() || !MapperFactoryBean.class.isAssignableFrom(beanDefinition.getBeanClass())) {
-      return;
+    @Override
+    public void postProcessBeanDefinition(String beanName, RootBeanDefinition beanDefinition) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-    if (beanDefinition.getResolvableType().hasUnresolvableGenerics()) {
-      Class<?> mapperInterface = getMapperInterface(beanDefinition);
-      if (mapperInterface != null) {
-        // Exposes a generic type information to context for prevent early initializing
-        beanDefinition
-            .setTargetType(ResolvableType.forClassWithGenerics(beanDefinition.getBeanClass(), mapperInterface));
-      }
-    }
-  }
 
-  private Class<?> getMapperInterface(RootBeanDefinition beanDefinition) {
-    try {
-      return (Class<?>) beanDefinition.getPropertyValues().get("mapperInterface");
-    } catch (Exception e) {
-      LOG.debug("Fail getting mapper interface type.", e);
-      return null;
+    private void resolveMapperFactoryBeanTypeIfNecessary(RootBeanDefinition beanDefinition) {
+        if (!beanDefinition.hasBeanClass() || !MapperFactoryBean.class.isAssignableFrom(beanDefinition.getBeanClass())) {
+            return;
+        }
+        if (beanDefinition.getResolvableType().hasUnresolvableGenerics()) {
+            Class<?> mapperInterface = getMapperInterface(beanDefinition);
+            if (mapperInterface != null) {
+                // Exposes a generic type information to context for prevent early initializing
+                beanDefinition.setTargetType(ResolvableType.forClassWithGenerics(beanDefinition.getBeanClass(), mapperInterface));
+            }
+        }
     }
-  }
 
+    private Class<?> getMapperInterface(RootBeanDefinition beanDefinition) {
+        try {
+            return (Class<?>) beanDefinition.getPropertyValues().get("mapperInterface");
+        } catch (Exception e) {
+            LOG.debug("Fail getting mapper interface type.", e);
+            return null;
+        }
+    }
 }

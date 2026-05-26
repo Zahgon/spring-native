@@ -16,7 +16,6 @@
 package org.mybatis.spring.nativex.autoconfigure;
 
 import java.util.List;
-
 import org.mybatis.spring.boot.autoconfigure.ConfigurationCustomizer;
 import org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration;
 import org.mybatis.spring.boot.autoconfigure.SqlSessionFactoryBeanCustomizer;
@@ -39,27 +38,15 @@ import org.springframework.core.io.Resource;
 @AutoConfigureBefore(MybatisAutoConfiguration.class)
 public class MyBatisSpringNativeAutoConfiguration {
 
-  @ConditionalOnBean(MyBatisScannedResourcesHolder.class)
-  @Bean
-  ConfigurationCustomizer mybatisScannedResourcesHolderConfigurationCustomizer(
-      List<MyBatisScannedResourcesHolder> holders) {
-    return configuration -> holders.forEach(holder -> {
-      holder.getTypeAliasesClasses().forEach(configuration.getTypeAliasRegistry()::registerAlias);
-      holder.getTypeHandlerClasses().forEach(configuration.getTypeHandlerRegistry()::register);
-    });
-  }
+    @ConditionalOnBean(MyBatisScannedResourcesHolder.class)
+    @Bean
+    ConfigurationCustomizer mybatisScannedResourcesHolderConfigurationCustomizer(List<MyBatisScannedResourcesHolder> holders) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @ConditionalOnBean(MyBatisScannedResourcesHolder.class)
-  @Bean
-  SqlSessionFactoryBeanCustomizer mybatisScannedResourcesHolderSqlSessionFactoryBeanCustomizer(
-      List<MyBatisScannedResourcesHolder> holders) {
-    return factoryBean -> {
-      Resource[] resources = holders.stream()
-          .flatMap(holder -> holder.getMapperLocations().stream().map(ClassPathResource::new)).toArray(Resource[]::new);
-      if (resources.length > 0) {
-        factoryBean.setMapperLocations(resources);
-      }
-    };
-  }
-
+    @ConditionalOnBean(MyBatisScannedResourcesHolder.class)
+    @Bean
+    SqlSessionFactoryBeanCustomizer mybatisScannedResourcesHolderSqlSessionFactoryBeanCustomizer(List<MyBatisScannedResourcesHolder> holders) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

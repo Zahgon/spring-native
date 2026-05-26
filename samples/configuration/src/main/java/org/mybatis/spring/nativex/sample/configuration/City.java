@@ -17,46 +17,48 @@ package org.mybatis.spring.nativex.sample.configuration;
 
 public class City {
 
-  private Integer cityId;
-  private String cityName;
-  private String stateCode;
-  private String countryCode;
+    private Integer cityId;
 
-  public Integer getCityId() {
-    return cityId;
-  }
+    private String cityName;
 
-  public void setCityId(Integer cityId) {
-    this.cityId = cityId;
-  }
+    private String stateCode;
 
-  public String getCityName() {
-    return cityName;
-  }
+    private String countryCode;
 
-  public void setCityName(String cityName) {
-    this.cityName = cityName;
-  }
+    public Integer getCityId() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public String getStateCode() {
-    return stateCode;
-  }
+    public void setCityId(Integer cityId) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public void setStateCode(String stateCode) {
-    this.stateCode = stateCode;
-  }
+    public String getCityName() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public String getCountryCode() {
-    return countryCode;
-  }
+    public void setCityName(String cityName) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public void setCountryCode(String countryCode) {
-    this.countryCode = countryCode;
-  }
+    public String getStateCode() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public String toString() {
-    return "City{" + "cityId=" + cityId + ", cityName='" + cityName + '\'' + ", stateCode='" + stateCode + '\''
-        + ", countryCode='" + countryCode + '\'' + '}';
-  }
+    public void setStateCode(String stateCode) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public String getCountryCode() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public void setCountryCode(String countryCode) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    @Override
+    public String toString() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

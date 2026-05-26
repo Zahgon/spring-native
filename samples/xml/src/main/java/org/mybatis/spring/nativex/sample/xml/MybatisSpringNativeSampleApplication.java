@@ -25,20 +25,14 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class MybatisSpringNativeSampleApplication {
 
-  private static final Logger log = LoggerFactory.getLogger("ApLog");
+    private static final Logger log = LoggerFactory.getLogger("ApLog");
 
-  public static void main(String[] args) {
-    SpringApplication.run(MybatisSpringNativeSampleApplication.class, args);
-  }
+    public static void main(String[] args) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  ApplicationRunner runner(CityMapper mapper) {
-    return args -> {
-      City newCity = new City(null, "NYC", "NY", "USA");
-      mapper.insert(newCity);
-      log.info("New city: {}", newCity);
-      mapper.findAll().forEach(x -> log.info("{}", x));
-    };
-  }
-
+    @Bean
+    ApplicationRunner runner(CityMapper mapper) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

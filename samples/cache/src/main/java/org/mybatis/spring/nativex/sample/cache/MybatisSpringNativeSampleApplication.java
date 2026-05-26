@@ -16,7 +16,6 @@
 package org.mybatis.spring.nativex.sample.cache;
 
 import java.util.ArrayList;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.ApplicationRunner;
@@ -26,26 +25,18 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.nativex.hint.NativeHint;
 import org.springframework.nativex.hint.SerializationHint;
 
-@NativeHint(serializables = @SerializationHint(types = { ArrayList.class, City.class, String.class, Integer.class,
-    Number.class }))
+@NativeHint(serializables = @SerializationHint(types = { ArrayList.class, City.class, String.class, Integer.class, Number.class }))
 @SpringBootApplication
 public class MybatisSpringNativeSampleApplication {
 
-  private static final Logger log = LoggerFactory.getLogger("ApLog");
+    private static final Logger log = LoggerFactory.getLogger("ApLog");
 
-  public static void main(String[] args) {
-    SpringApplication.run(MybatisSpringNativeSampleApplication.class, args);
-  }
+    public static void main(String[] args) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  ApplicationRunner runner(CityMapper mapper) {
-    return args -> {
-      City newCity = new City(null, "NYC", "NY", "USA");
-      mapper.insert(newCity);
-      log.info("New city: {}", newCity);
-      mapper.findAll().forEach(x -> log.info("{}", x));
-      mapper.findAll().forEach(x -> log.info("{}", x));
-    };
-  }
-
+    @Bean
+    ApplicationRunner runner(CityMapper mapper) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

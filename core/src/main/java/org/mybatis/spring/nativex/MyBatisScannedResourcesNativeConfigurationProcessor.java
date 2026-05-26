@@ -27,11 +27,9 @@ import static org.springframework.nativex.hint.TypeAccess.QUERY_DECLARED_CONSTRU
 import static org.springframework.nativex.hint.TypeAccess.QUERY_DECLARED_METHODS;
 import static org.springframework.nativex.hint.TypeAccess.QUERY_PUBLIC_CONSTRUCTORS;
 import static org.springframework.nativex.hint.TypeAccess.QUERY_PUBLIC_METHODS;
-
 import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
-
 import org.springframework.aot.context.bootstrap.generator.infrastructure.nativex.BeanFactoryNativeConfigurationProcessor;
 import org.springframework.aot.context.bootstrap.generator.infrastructure.nativex.NativeConfigurationRegistry;
 import org.springframework.aot.context.bootstrap.generator.infrastructure.nativex.NativeResourcesEntry;
@@ -47,33 +45,13 @@ import org.springframework.nativex.hint.TypeAccess;
  */
 public class MyBatisScannedResourcesNativeConfigurationProcessor implements BeanFactoryNativeConfigurationProcessor {
 
-  private static final TypeAccess[] DEFAULT_TYPE_ACCESSES = { PUBLIC_CONSTRUCTORS, PUBLIC_CLASSES, PUBLIC_FIELDS,
-      PUBLIC_METHODS, DECLARED_CLASSES, DECLARED_CONSTRUCTORS, DECLARED_FIELDS, DECLARED_METHODS,
-      QUERY_DECLARED_METHODS, QUERY_PUBLIC_METHODS, QUERY_DECLARED_CONSTRUCTORS, QUERY_PUBLIC_CONSTRUCTORS };
+    private static final TypeAccess[] DEFAULT_TYPE_ACCESSES = { PUBLIC_CONSTRUCTORS, PUBLIC_CLASSES, PUBLIC_FIELDS, PUBLIC_METHODS, DECLARED_CLASSES, DECLARED_CONSTRUCTORS, DECLARED_FIELDS, DECLARED_METHODS, QUERY_DECLARED_METHODS, QUERY_PUBLIC_METHODS, QUERY_DECLARED_CONSTRUCTORS, QUERY_PUBLIC_CONSTRUCTORS };
 
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public void process(ConfigurableListableBeanFactory beanFactory, NativeConfigurationRegistry registry) {
-    String[] beanNames = beanFactory.getBeanNamesForType(MyBatisScannedResourcesHolder.class);
-    for (String beanName : beanNames) {
-      BeanDefinition beanDefinition = beanFactory.getBeanDefinition(beanName);
-      @SuppressWarnings("unchecked")
-      Set<String> resourceLocations = (Set<String>) Optional
-          .ofNullable(beanDefinition.getPropertyValues().getPropertyValue("resourceLocations"))
-          .map(PropertyValue::getValue).orElse(Collections.emptySet());
-      resourceLocations.forEach(x -> registry.resources().add(NativeResourcesEntry.of(x)));
-      @SuppressWarnings("unchecked")
-      Set<Class<?>> reflectionClasses = (Set<Class<?>>) Optional
-          .ofNullable(beanDefinition.getPropertyValues().getPropertyValue("reflectionClasses"))
-          .map(PropertyValue::getValue).orElse(Collections.emptySet());
-      TypeAccess[] reflectionTypeAccesses = (TypeAccess[]) Optional
-          .ofNullable(beanDefinition.getPropertyValues().getPropertyValue("reflectionTypeAccesses"))
-          .map(PropertyValue::getValue).orElse(DEFAULT_TYPE_ACCESSES);
-      reflectionClasses.forEach(x -> registry.reflection().forType(x)
-          .withAccess(reflectionTypeAccesses.length == 0 ? DEFAULT_TYPE_ACCESSES : reflectionTypeAccesses).build());
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void process(ConfigurableListableBeanFactory beanFactory, NativeConfigurationRegistry registry) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-  }
-
 }

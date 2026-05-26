@@ -18,7 +18,6 @@ package org.mybatis.spring.nativex.sample.dynamicsql;
 import java.sql.JDBCType;
 import java.util.Collection;
 import java.util.List;
-
 import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
@@ -38,36 +37,39 @@ import org.mybatis.dynamic.sql.util.mybatis3.CommonUpdateMapper;
 import org.mybatis.dynamic.sql.util.mybatis3.MyBatis3Utils;
 
 @Mapper
-public interface CityMapper
-    extends CommonSelectMapper, CommonCountMapper, CommonDeleteMapper, CommonInsertMapper<City>, CommonUpdateMapper {
+public interface CityMapper extends CommonSelectMapper, CommonCountMapper, CommonDeleteMapper, CommonInsertMapper<City>, CommonUpdateMapper {
 
-  @InsertProvider(type = SqlProviderAdapter.class, method = "insert")
-  @Options(useGeneratedKeys = true, keyProperty = "row.id")
-  int insert(InsertStatementProvider<City> insertStatement);
+    @InsertProvider(type = SqlProviderAdapter.class, method = "insert")
+    @Options(useGeneratedKeys = true, keyProperty = "row.id")
+    int insert(InsertStatementProvider<City> insertStatement);
 
-  @SelectProvider(type = SqlProviderAdapter.class, method = "select")
-  List<City> selectMany(SelectStatementProvider selectStatement);
+    @SelectProvider(type = SqlProviderAdapter.class, method = "select")
+    List<City> selectMany(SelectStatementProvider selectStatement);
 
-  default void insert(City city) {
-    MyBatis3Utils.insert(this::insert, city, CityTable.INSTANCE, c -> c.map(CityTable.INSTANCE.name).toProperty("name")
-        .map(CityTable.INSTANCE.state).toProperty("state").map(CityTable.INSTANCE.country).toProperty("country"));
-  }
-
-  default Collection<City> findAll() {
-    return MyBatis3Utils.selectList(this::selectMany, CityTable.INSTANCE.allColumn, CityTable.INSTANCE,
-        SelectDSLCompleter.allRows());
-  }
-
-  class CityTable extends SqlTable {
-    private static final CityTable INSTANCE = new CityTable();
-    private final SqlColumn<Integer> id = column("id", JDBCType.INTEGER);
-    private final SqlColumn<String> name = column("name", JDBCType.VARCHAR);
-    private final SqlColumn<String> state = column("state", JDBCType.VARCHAR);
-    private final SqlColumn<String> country = column("country", JDBCType.VARCHAR);
-    private final BasicColumn[] allColumn = BasicColumn.columnList(id, name, state, country);
-
-    private CityTable() {
-      super("city");
+    default void insert(City city) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-  }
+
+    default Collection<City> findAll() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    class CityTable extends SqlTable {
+
+        private static final CityTable INSTANCE = new CityTable();
+
+        private final SqlColumn<Integer> id = column("id", JDBCType.INTEGER);
+
+        private final SqlColumn<String> name = column("name", JDBCType.VARCHAR);
+
+        private final SqlColumn<String> state = column("state", JDBCType.VARCHAR);
+
+        private final SqlColumn<String> country = column("country", JDBCType.VARCHAR);
+
+        private final BasicColumn[] allColumn = BasicColumn.columnList(id, name, state, country);
+
+        private CityTable() {
+            super("city");
+        }
+    }
 }

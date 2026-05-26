@@ -17,57 +17,59 @@ package org.mybatis.spring.nativex.sample.thymeleaf;
 
 public class City {
 
-  private Integer id;
-  private String name;
-  private String state;
-  private String country;
+    private Integer id;
 
-  public City() {
-    // NOP
-  }
+    private String name;
 
-  public City(Integer id, String name, String state, String country) {
-    this.id = id;
-    this.name = name;
-    this.state = state;
-    this.country = country;
-  }
+    private String state;
 
-  public Integer getId() {
-    return id;
-  }
+    private String country;
 
-  public void setId(Integer id) {
-    this.id = id;
-  }
+    public City() {
+        // NOP
+    }
 
-  public String getName() {
-    return name;
-  }
+    public City(Integer id, String name, String state, String country) {
+        this.id = id;
+        this.name = name;
+        this.state = state;
+        this.country = country;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public Integer getId() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public String getState() {
-    return state;
-  }
+    public void setId(Integer id) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public void setState(String state) {
-    this.state = state;
-  }
+    public String getName() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public String getCountry() {
-    return country;
-  }
+    public void setName(String name) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public void setCountry(String country) {
-    this.country = country;
-  }
+    public String getState() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public String toString() {
-    return "City{" + "id=" + id + ", name='" + name + '\'' + ", state='" + state + '\'' + ", country='" + country + '\''
-        + '}';
-  }
+    public void setState(String state) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public String getCountry() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public void setCountry(String country) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    @Override
+    public String toString() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }
